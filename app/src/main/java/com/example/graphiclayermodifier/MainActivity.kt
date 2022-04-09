@@ -27,6 +27,10 @@ import com.example.graphiclayermodifier.MainDestinations.TARGET_SCREEN
 import com.example.graphiclayermodifier.MainDestinations.TARGET_TYPE
 import com.example.graphiclayermodifier.ui.theme.GraphicLayerModifierTheme
 
+/**
+ * https://medium.com/mobile-app-development-publication/have-fun-with-jetpack-compose-graphicslayer-modifier-e39c12a4791f (원본글)
+ * */
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +41,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    Entry("Android")
                 }
             }
         }
@@ -45,7 +49,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
+fun Entry(name: String) {
     NavGraph()
 }
 
@@ -134,6 +138,6 @@ fun ChildScreen(animationSetting: String?) {
 @Composable
 fun DefaultPreview() {
     GraphicLayerModifierTheme {
-        Greeting("Android")
+        Entry("Android")
     }
 }

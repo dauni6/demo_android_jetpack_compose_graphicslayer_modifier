@@ -1,9 +1,9 @@
 package com.example.graphiclayermodifier
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Slider
 import androidx.compose.material.Text
@@ -44,7 +44,6 @@ fun GraphicsLayerSetting() {
     ) {
 
         val roundedDegree = RoundedCornerShape(8.dp)
-        CircleShape
         Box(
             Modifier
                 .graphicsLayer(
@@ -65,8 +64,7 @@ fun GraphicsLayerSetting() {
                 )
                 .background(Color(97, 140, 85))
                 .size(100.dp, 100.dp)
-                .border(5.dp, Color.Red, shape = roundedDegree)
-                ,
+                .border(5.dp, Color.Red, shape = roundedDegree),
             contentAlignment = Alignment.Center
         ) {
             Text(
@@ -77,27 +75,34 @@ fun GraphicsLayerSetting() {
             )
         }
 
-        toggle("Alpha", alpha, 0f..1f) { alpha = it }
-        toggle("TranslationX", translationX, -100f..100f) { translationX = it }
-        toggle("TranslationY", translationY, -100f..100f) { translationY = it }
-        toggle("Shadow", shadowElevation, 0f..500f) { shadowElevation = it }
-        toggle("ScaleX", scaleX, 0.5f..2f) { scaleX = it }
-        toggle("ScaleY", scaleY, 0.5f..2f) { scaleY = it }
-        toggle("RotateX", rotationX, -360f..360f) { rotationX = it }
-        toggle("RotateY", rotationY, -360f..360f) { rotationY = it }
-        toggle("RotateZ", rotationZ, -360f..360f) { rotationZ = it }
-        toggle("OriginX", originX, 0f..1f) { originX = it }
-        toggle("OriginY", originY, 0f..1f) { originY = it }
-        toggle("CameraDist", cameraDistance, 3f..50f) { cameraDistance = it }
-        toggle("Blur", blur, 1f..100f) { blur = it }
+        Toggle("Alpha", alpha, 0f..1f) {
+            Log.d("TEST", "alpha = $it")
+            alpha = it
+        }
+        Toggle("TranslationX", translationX, -100f..100f) {
+            translationX = it
+        }
+        Toggle("TranslationY", translationY, -100f..100f) { translationY = it }
+        Toggle("Shadow", shadowElevation, 0f..500f) { shadowElevation = it }
+        Toggle("ScaleX", scaleX, 0.5f..2f) { scaleX = it }
+        Toggle("ScaleY", scaleY, 0.5f..2f) { scaleY = it }
+        Toggle("RotateX", rotationX, -360f..360f) { rotationX = it }
+        Toggle("RotateY", rotationY, -360f..360f) { rotationY = it }
+        Toggle("RotateZ", rotationZ, -360f..360f) { rotationZ = it }
+        Toggle("OriginX", originX, 0f..1f) { originX = it }
+        Toggle("OriginY", originY, 0f..1f) { originY = it }
+        Toggle("CameraDist", cameraDistance, 3f..50f) { cameraDistance = it }
+        Toggle("Blur", blur, 1f..100f) { blur = it }
     }
 }
 
 @Composable
-private fun toggle(text: String,
-                   value: Float,
-                   range: ClosedFloatingPointRange<Float>,
-                   onValueChange: (Float) -> Unit) {
+private fun Toggle(
+    text: String,
+    value: Float,
+    range: ClosedFloatingPointRange<Float>,
+    onValueChange: (Float) -> Unit
+) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.height(30.dp)
@@ -105,7 +110,7 @@ private fun toggle(text: String,
         Text(text, modifier = Modifier.width(100.dp))
         Slider(
             value = value,
-            onValueChange,
+            onValueChange = onValueChange,
             valueRange = range
         )
     }

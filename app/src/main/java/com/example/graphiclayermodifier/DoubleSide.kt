@@ -29,16 +29,9 @@ fun DoubleSide(
     fun isFlipped() = isVerticallyFlip() xor isHorizontallyFlip()
 
     if (isFlipped()) {
-        val rotationXBack =
-            if (flipType == FLIPTYPE.HORIZONTAL)
-                rotationX - 180
-            else
-                rotationX
+        val rotationXBack = if (flipType == FLIPTYPE.HORIZONTAL) rotationX - 180 else rotationX
 
-        val rotationYBack =
-            if (flipType == FLIPTYPE.VERTICAL)
-                rotationY - 180
-            else
+        val rotationYBack = if (flipType == FLIPTYPE.VERTICAL) rotationY - 180 else
             // Need to negative value, suspecting a bug on rotation when a flipped
             // horizontally card is rotating left to right, it will reverse
             // hence need to negate it
